@@ -13,14 +13,14 @@
 I am currently studying C language. 
 My Questions is here.
 
->1. I wonder what 'array decaying' means, and when it happens.
+>1. 'array decaying' means, and when it happens.
 <p>
 
     - 배열 붕괴(array decaying)이 무엇을 뜻하는지, 언제 발생하는지가 궁금합니다.
 
 </p>
 
->2. I wonder if the two variables below are interpreted in the same way.
+>2. if the two variables below are interpreted in the same way?
 <p>
 
     - 아래 두 변수가 같은 방식으로 해석되는 것인지 궁금합니다.
