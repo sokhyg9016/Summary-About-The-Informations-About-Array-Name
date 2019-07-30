@@ -71,3 +71,38 @@ From the C Standard (6.3.2.1 Lvalues, arrays, and function designators)
 
 </p>
 
+> [참고] <a href = "https://stackoverflow.com/questions/1461432/what-is-array-decaying/1461466#1461466">what-is-array-decaying</a>
+
+|```Decay``` refers to the ``implicit conversion`` of an expression from an ```array type``` to a ```pointer type```. In most contexts, when the compiler sees an array expression it converts the type of the expression from "N-element array of T" to "pointer to T" and sets the value of the expression to the address of the first element of the array.| 
+|:---|
+<p>
+
+    붕괴(Decay) 는 표현식을 배열 유형에서 포인터 유형으로 암묵적으로 변환하는 것을 말한다. 
+    대부분의 맥락에서, 컴파일러는 배열 식을 볼 때 식의 유형을 "N-요소 배열 of T"에서 "pointer to T"로 변환하고
+    식 값을 배열의 첫 번째 요소의 주소로 설정한다.
+
+</p>
+
+이러한 ***```decay```*** 는 앞에서 본 3가지의 예외의 경우를 제외하면 자주 발생하는 현상이다. 즉, 함수로 배열을 넘겨줄 때나 함수의 매개 변수로, 예를 들어
+```int a[]```로 쓴 것이 ```int* a```으로 변환되는 것 등이 이러한 예이다.
+
+이때 중요한 점은 이렇게 변환된 ```포인터```는 **___```non-modifable l-value```___**, ***즉 수정할 수 없는 L-value*** 값이라는 것이다.
+
+<br>
+| **참고: 이 파트는 의역한 부분이 절반이 넘는다.. 그러니 참고에 나와있는 링크로 가서 직접 보는 것을 추천한다.** |
+|:---|
+<br>
+
+## 정리
+
+1. ```배열 이름```은 ```수정할 수 없는 L-value``` 값이다
+1. 배열 이름은 포인터가 아니며, 배열 또한 포인터가 아니다.
+1. ```붕괴(Decay)``` 는 배열 이름이 몇몇 상황에서 포인터로 ```암시적인 형 변환(implicit type conversion)```을 겪는 현상을 말한다.
+1. 배열 붕괴(Array Decay)를 ```Automatic Array Convertion```이라고 말하기도 한다.
+
+## 참고
+1. <a href = "https://stackoverflow.com/questions/19441793/when-are-array-names-constants-or-pointers">when-are-array-names-constants-or-pointers</a>
+1. <a href = "https://stackoverflow.com/questions/57268963/what-is-array-decay-in-c-and-when-it-happen">what-is-array-decay-in-c-and-when-it-happen</a>
+1. <a href = "https://stackoverflow.com/questions/17752978/exceptions-to-array-decaying-into-a-pointer?noredirect=1&lq=1">exceptions-to-array-decaying-into-a-pointerM</a>
+1. <a href = "https://stackoverflow.com/questions/1641957/is-an-array-name-a-pointer">is-an-array-name-a-pointer</a>
+
