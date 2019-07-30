@@ -36,3 +36,38 @@ zippo = (char(*)[2])malloc(sizeof(char[2]) * 4);
 
 ```
 
+나는 이런 식으로 배열 붕괴란 무엇인지, 또한 언제 발생하는지와 위의 코드가 같은 의미를 가지는지를 물었다. 5분이 지나자 답변이 달리기 시작했다.
+
+## Answers
+From the C Standard (6.3.2.1 Lvalues, arrays, and function designators)
+
+> [참고] <a href = "http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf">C Standard</a>
+>>NOTE: When you want to see the document about below quote, open the link and find chaper 6
+
+
+|3 Except when it is the operand of the sizeof operator or the unary & operator, or is a string literal used to initialize an array, an expression that has type ‘‘array of type’’ is converted to an expression with type ‘‘pointer to type’’ that points to the initial element of the array object and is not an lvalue. If the array object has register storage class, the behavior is undefined.| 
+|:---|
+<p>
+    
+    "sizeof"연산자나 단항 & 연산자 또는 배열 초기화에 사용되는 문자열 초기화인 경우에 피연산자로써 
+    사용되는 3가지 경우를 제외하고, "배열의 형식"을 가진 식은 배열 객체의 초기 요소를 가리키며
+    L-value 가 아닌 포인터로 변환된다.  
+    
+</p>
+
+즉, 중요한 것은 위에서 말한 3가지 예외의 경우를 제외하고는 ```배열 이름```은 ```&arr[0]```으로 쓴 것과 같은 포인터로 변환되며 ```l-value```가 아니라는 말은 즉, 배열 이름은 결국 **___```non-modifable l-value```___** 라는 뜻이다. 
+
+그러나 ```배열 이름```이 포인터라고 할 수 는 없다. ```배열 이름```은 포인터가 아니며, ```배열``` 또한 포인터가 아니다. 그렇다면 이게 대체 무슨 말인가?
+
+> [참고] <a href = "https://stackoverflow.com/questions/1641957/is-an-array-name-a-pointer">is-an-array-name-a-pointer</a>
+
+|An array is an array and a pointer is a pointer, but in most cases array names are converted to pointers. A term often used is that they **___```decay```___** to pointers.| 
+|:---|
+<p>
+
+    배열은 배열이고 포인터는 포인터지만 대부분의 경우 배열 이름은 포인터로 변환된다. 
+    즉, 배열 이름이 포인터로 암시적인 형 변환(implicit type conversion)을 겪을 뿐이다.
+    이러한 변환을 붕괴(decay)라고 한다.
+
+</p>
+
